@@ -1,0 +1,6 @@
+source venv/bin/activate
+pip3 install pyobjc-framework-Quartz
+pip3 install pyobjc-core 
+pip3 install pyobjc
+pip3 install opencv-python
+pip install pyautogui 
