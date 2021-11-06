@@ -3,9 +3,9 @@ import pandas as pd
 import os 
 import train_model
 
-
-if __name__ == "__main__":
+def main():
     
+    # check if the required files exist 
     noise_file = "noise.csv" 
     theta_file = "theta.npy"
     for file in [noise_file, theta_file]:
@@ -17,5 +17,11 @@ if __name__ == "__main__":
 
     # save inputs and outputs as csv files 
     output_file = "output.csv"
-    pd.DataFrame(output).to_csv(output_file, header=None) 
+    pd.DataFrame(output).to_csv(output_file, header=None)
+    print(f'created: {output_file}')
+    
+
+if __name__ == "__main__":
+    
+    main()
                   
