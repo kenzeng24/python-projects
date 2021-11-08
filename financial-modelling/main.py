@@ -16,7 +16,7 @@ def main():
     output = train_model.G(z,theta)
 
     # save inputs and outputs as csv files 
-    output_file = "output.csv"
+    output_file = "generated_samples.csv"
     pd.DataFrame(output).to_csv(output_file, header=None)
     print(f'created: {output_file}')
     
