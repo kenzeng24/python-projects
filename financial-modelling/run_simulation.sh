@@ -1,4 +1,4 @@
-rm theta.npy 
+# rm theta.npy 
 rm noise.csv
 rm output.csv
 

@@ -47,33 +47,6 @@ def train(data):
     return theta, xnorm2
 
 
-def G(z, theta, h=0.2):
-    """simulate financial data from the input noise""" 
-    
-    # convert first set of noise to uniform distribution
-    # and then converting to integer to sample 
-    index = theta["N"] * stats.norm.cdf(z[:,:4])
-    index = index.astype(int)
-    
-    # sample from gaussian kernel using additional noise 
-    n, _ = z.shape
-    sampled = np.zeros((n,4))
-    for i in range(4):
-        sampled[:,i] = theta["distribution"][i][index[:,i]]
-    xhat = sampled + np.sqrt(h) * z[:,4:]
-    
-    # to reverse the training process: 
-    # we unnormalize and then reconstruct data 
-    # using PCA components 
-    xhat = xhat * theta["sigma2"] + theta["mean2"] 
-    xhat = np.dot(xhat, theta["eigen_basis"]) 
-
-    # unnormalize and then reverse cube root 
-    xhat = xhat * theta["sigma1"] + theta["mean1"] 
-    xhat = xhat**3 
-    return xhat 
-
-
 def main():
     """ train the parameters theta reuqired for G
         and check that reconstruction error is negligible"""
@@ -93,6 +66,8 @@ def main():
 if __name__ == "__main__":
     
     main()
-                  
+    
+
+
              
 
