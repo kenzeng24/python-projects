@@ -43,7 +43,7 @@ def main(noise_file = "noise.csv",
 
     z = pd.read_csv(noise_file, header=None, index_col=None).values
     theta = np.load(theta_file, allow_pickle=True).tolist()
-    output = G(z,theta, h=0.01)
+    output = G(z,theta, h=0.015)
 
     # save inputs and outputs as csv files 
     pd.DataFrame(output).to_csv(output_file, header=None, index=False)

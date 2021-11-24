@@ -47,18 +47,21 @@ def train(data):
     return theta, xnorm2
 
 
-def main():
+def main(param_file = 'theta.npy', 
+         filenames = ["train.csv", "validation.csv"]):
     """ train the parameters theta reuqired for G
         and check that reconstruction error is negligible"""
-    filename = "train.csv"
-    assert os.path.isfile(filename), f"{filename} not found"
+    
+    # check files exist 
+    for filename in filenames:
+        assert os.path.isfile(filename), f"{filename} not found"
 
-    # train theta parameters using train.csv 
-    data = pd.read_csv(filename, header=None, index_col=0).values
+    # train theta parameters using available data  
+    dfs = [pd.read_csv(filename, header=None, index_col=0) for filename in filenames]
+    data = pd.concat(dfs, ignore_index=True).values
     theta, xnorm2 = train(data)	 
 
     # save parameters theta as npy file 
-    param_file = 'theta.npy'
     np.save(param_file,theta)
     print(f'created: {param_file}')
 
